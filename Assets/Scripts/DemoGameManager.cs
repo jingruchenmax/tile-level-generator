@@ -96,6 +96,7 @@ public class DemoGameManager : MonoBehaviour
         if (isWebGL)
         {
             int urlLevelIndex = GetLevelIndexFromURL();
+            Debug.Log(urlLevelIndex);
             if (urlLevelIndex > 0 && urlLevelIndex < levelFiles.Count)
                 levelIndex = urlLevelIndex;
             else
@@ -244,6 +245,15 @@ public class DemoGameManager : MonoBehaviour
 
     private void InitGame()
     {
+        // Always try to set levelIndex from URL at the start of InitGame
+        if (isWebGL)
+        {
+            int urlLevelIndex = GetLevelIndexFromURL();
+            if (urlLevelIndex >= 0 && urlLevelIndex < levelFiles.Count)
+            {
+                levelIndex = urlLevelIndex;
+            }
+        }
         if (isInitializing) return;
         isInitializing = true;
         // Hide completion code if visible

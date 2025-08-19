@@ -203,11 +203,14 @@ public class LevelManager : MonoBehaviour {
             var rowItems = levelRow.Split(' ').ToList();
             for(var col = 0; col < columnCount; col++)
             {
-
-                // Only BLOCK, OPEN, and EXIT form the actual tiles
-                // of the map. All other "tiles" will be added as separate
-                // elements into the scene.
-                var tile = int.Parse(rowItems[col]);
+                string item = col < rowItems.Count ? rowItems[col].Trim() : CELL_BLOCK.ToString();
+                if (string.IsNullOrWhiteSpace(item)) item = CELL_BLOCK.ToString();
+                int tile;
+                if (!int.TryParse(item, out tile))
+                {
+                    Debug.LogError($"Invalid tile value: '{item}' at row {row}, col {col}");
+                    tile = CELL_BLOCK; // fallback to block
+                }
 
                 if (tile == CELL_BLOCK)
                 {

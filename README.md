@@ -1,9 +1,52 @@
-# tile-level-generator
+# tile level generator 2.0
+
+A Unity project adapted for WebGL deployment and online study replication.  
+This repository documents updates, modifications, and integrations made for research purposes.
+
+---
+
+## Project Updates (Replica Study)
+
+- **Unity version:** 2022.3.52f1  
+- **Target platform:** WebGL  
+- Added [Button Icons asset by ansdor](https://ansdor.itch.io/button-icons) (credit: ansdor)  
+- Font: Resoled Bold (credit: Resoled Bold)  
+- Various code changes to ensure WebGL compatibility  
+
+---
+
+## Study-Specific Modifications
+
+- Added WebGL-specific code paths  
+- <del>Randomized the order of testing maps</del>  
+  - Instead, levels (except the tutorial) require passing the index via a URL flag  
+- Implemented logging of player behavior/interaction data for online study integration with **ReVisit**  
+- Exposed a function to send unity events from the game to the parent window  
+
+### Example: JavaScript Integration
+
+The following code was added to the JavaScript library:
+
+```javascript
+mergeInto(LibraryManager.library, {
+  SendTargetClickedMessage: function(jsonPtr) {
+    var json = UTF8ToString(jsonPtr);
+    window.parent.postMessage({
+      type: "game_event",
+      payload: JSON.parse(json)
+    }, "*");
+  }
+});
+
+## Original Project
+
+[Original Repository](https://github.com/DungeonDigger/tile-level-generator)
 
 This project provides a level generator that can be controlled by a human
 user to generate tile-based levels as well as episode data that can
 be used to train an AI agent for procedural content generation (PCG)
 through apprenticeship learning.
+
 
 ## Requirements
 

@@ -19,7 +19,7 @@ This repository documents updates, modifications, and integrations made for rese
 
 - Added WebGL-specific code paths  
 - <del>Randomized the order of testing maps</del>  
-  - Instead, levels (except the tutorial) require passing the index via a URL flag  
+  - Instead, levels (except the tutorial) require passing the index via a URL flag, e.g., `?levelTag=0` for the tutorial level.
 - Implemented logging of player behavior/interaction data for online study integration with **ReVisit**  
 - Exposed a function to send unity events from the game to the parent window  
 

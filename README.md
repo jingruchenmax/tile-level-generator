@@ -37,6 +37,7 @@ mergeInto(LibraryManager.library, {
     }, "*");
   }
 });
+```
 
 ## Original Project
 
